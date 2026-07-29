@@ -13,7 +13,7 @@ public class HelpLuaTab(LuaDocumentation luaDocs)
     public void DrawTab()
     {
         using var child = ImRaii.Child(nameof(HelpLuaTab));
-        ImGuiUtils.Section("Lua Scripting", () => ImGui.TextWrapped($"Below are all of the functions and properties provided by the framework. Click any to copy the full call path to clipboard. Hover any function to learn more about it."));
+        ImGuiUtils.Section("Lua 腳本", () => ImGui.TextWrapped("下方列出框架提供的所有函式與屬性。點擊項目可將完整呼叫路徑複製到剪貼簿；將滑鼠停在函式上可查看詳細資訊。"));
 
         foreach (var module in luaDocs.GetModules().OrderBy(m => m.Key))
         {
@@ -117,7 +117,7 @@ public class HelpLuaTab(LuaDocumentation luaDocs)
         {
             if (!string.IsNullOrEmpty(ex))
             {
-                ImGui.TextColored(ImGuiColors.DalamudGrey, "Example:");
+                ImGui.TextColored(ImGuiColors.DalamudGrey, "範例：");
                 ImGuiEx.TextWrapped(ImGuiColors.DalamudYellow, ex);
             }
         }

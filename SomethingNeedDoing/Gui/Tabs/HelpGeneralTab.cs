@@ -11,53 +11,53 @@ public static class HelpGeneralTab
         using var child = ImRaii.Child(nameof(HelpGeneralTab));
         ImGuiUtils.Section(P.Name, () =>
         {
-            ImGui.TextWrapped($"{P.Name} is an expansion of the native macro system, with smart helpers, additional commands and modifiers, and unlimited macros.");
-            ImGui.TextWrapped("It also supports scripting with Lua, so you can write macros that are more complex than the native system can handle.");
+            ImGui.TextWrapped($"{P.Name} 擴充了原生巨集系統，提供智慧輔助、額外指令與修飾詞，以及不限數量的巨集。");
+            ImGui.TextWrapped("同時支援 Lua 腳本，可編寫原生系統無法處理的複雜巨集。");
         });
 
-        ImGuiUtils.Section("Status Monitoring", () =>
+        ImGuiUtils.Section("狀態監控", () =>
         {
-            ImGui.TextWrapped("That status window shows all currently running macros and their current state");
+            ImGui.TextWrapped("狀態視窗會顯示所有目前執行中的巨集及其狀態。");
             ImGui.Spacing();
 
-            ImGuiEx.Text(ImGuiColors.DalamudOrange, "Macro States");
-            ImGui.BulletText("Ready: Macro has been loaded but hasn't started running");
-            ImGui.BulletText("Running: Macro is currently executing");
-            ImGui.BulletText("Paused: Macro execution has been temporarily stopped");
-            ImGui.BulletText("Completed: Macro has finished execution");
-            ImGui.BulletText("Failed: Macro encountered an error during execution");
+            ImGuiEx.Text(ImGuiColors.DalamudOrange, "巨集狀態");
+            ImGui.BulletText("就緒：巨集已載入但尚未開始執行");
+            ImGui.BulletText("執行中：巨集目前正在執行");
+            ImGui.BulletText("已暫停：巨集執行已暫時停止");
+            ImGui.BulletText("已完成：巨集已完成執行");
+            ImGui.BulletText("失敗：巨集執行期間發生錯誤");
         });
 
-        ImGuiUtils.Section("Trigger Events", () =>
+        ImGuiUtils.Section("觸發事件", () =>
         {
-            ImGui.TextWrapped("Macros can be configured to trigger automatically based on specific game events:");
+            ImGui.TextWrapped("可設定巨集在特定遊戲事件發生時自動觸發：");
             Enum.GetNames<TriggerEvent>().Each(name => ImGui.BulletText(name));
 
-            ImGui.TextWrapped("Lua macros can also be configured to have individual functions trigger automatically (provided the script was already running).");
-            ImGui.TextWrapped($"Any function that begins with the name of a TriggerEvent will be registered in the {nameof(TriggerEventManager)} when the script is started.");
-            ImGui.TextWrapped($"For {TriggerEvent.OnAddonEvent} specifically, the event name must be followed by the addon name and event type, such as");
+            ImGui.TextWrapped("Lua 巨集也可設定個別函式自動觸發（腳本必須已在執行）。");
+            ImGui.TextWrapped($"以 TriggerEvent 名稱開頭的函式，會在腳本啟動時註冊至 {nameof(TriggerEventManager)}。");
+            ImGui.TextWrapped($"{TriggerEvent.OnAddonEvent} 的事件名稱後方必須接續介面名稱與事件類型，例如：");
             ImGui.SameLine();
             ImGuiEx.Text(ImGuiColors.DalamudOrange, "OnAddonEvent_SelectYesno_PostSetup");
         });
 
-        ImGuiUtils.Section("Macro Metadata", () =>
+        ImGuiUtils.Section("巨集中繼資料", () =>
         {
-            ImGuiEx.Text(ImGuiColors.DalamudOrange, "General");
-            ImGui.TextWrapped("Macros can be configured with metadata to provide specific configurations to the framework regarding macro execution.");
-            ImGui.TextWrapped("The metadata can be edited in the Macros Settings section when a macro is selected in the library.");
-            ImGui.TextWrapped("The metadata can be written to the file using the button provided in the above section. This is crucial for macros stored remotely (i.e. github) for the framework to know what settings to use when they're imported");
+            ImGuiEx.Text(ImGuiColors.DalamudOrange, "一般");
+            ImGui.TextWrapped("巨集可透過中繼資料向框架提供執行相關設定。");
+            ImGui.TextWrapped("在巨集庫中選取巨集後，可於巨集設定區段編輯中繼資料。");
+            ImGui.TextWrapped("可使用上方按鈕將中繼資料寫入檔案；對存放於 GitHub 等遠端位置的巨集而言，這能讓框架在匯入時得知應使用的設定。");
 
-            ImGuiEx.Text(ImGuiColors.DalamudOrange, "Dependencies and conflicts");
-            ImGui.TextWrapped("Macros can also be configured to require other plugins to run, and a message will be printed if the requirement is not met.");
-            ImGui.TextWrapped("Similiarly, macros can be configured to disable other plugins while running, though this requires plugins to be pre-defined in the framework to support this.");
-            ImGui.TextWrapped("Like plugin dependencies, macros can support relying on other macros, whether they're local (already loaded into snd) or remote (i.e. github)");
+            ImGuiEx.Text(ImGuiColors.DalamudOrange, "依賴與衝突");
+            ImGui.TextWrapped("巨集可設定為需要其他插件才能執行；若未滿足條件，將顯示訊息。");
+            ImGui.TextWrapped("也可設定巨集在執行期間停用其他插件，但該插件必須預先在框架中定義。");
+            ImGui.TextWrapped("巨集亦可依賴其他本地或遠端巨集。");
         });
 
-        ImGuiUtils.Section("Git Integration", () =>
+        ImGuiUtils.Section("Git 整合", () =>
         {
-            ImGui.TextWrapped("Macros can now be connected to a github url and auto converted into a \"Git Macro\"");
-            ImGui.TextWrapped("Git macros support auto updating when a new version is released (checked on startup), and going between versions via the version history modal (found in the Macro Settings section)");
-            ImGui.TextWrapped("A macro is automatically identified as a git macro when it has a repository url in its metadata. To convert a git macro back into a local macro, simply wipe the url or click the Reset Git Data button in the settings");
+            ImGui.TextWrapped("巨集可連結 GitHub 網址，並自動轉換為「Git 巨集」。");
+            ImGui.TextWrapped("Git 巨集會在啟動時檢查更新，並可透過巨集設定中的版本歷史視窗切換版本。");
+            ImGui.TextWrapped("中繼資料含有儲存庫網址時，巨集會自動識別為 Git 巨集。清除網址或點擊設定中的重設 Git 資料，即可轉回本地巨集。");
         });
     }
 }

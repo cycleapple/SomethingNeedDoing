@@ -41,7 +41,7 @@ public class MacroSettingsSection(IMacroScheduler scheduler, DependencyFactory d
             DrawDependencies(selectedMacro);
         }
         else
-            ImGui.TextColored(ImGuiColors.DalamudGrey, "Select a macro to view and edit its settings");
+            ImGui.TextColored(ImGuiColors.DalamudGrey, "請選擇巨集以檢視及編輯其設定");
     }
 
     private void DrawMacroConfig(ConfigMacro selectedMacro)
@@ -64,13 +64,13 @@ public class MacroSettingsSection(IMacroScheduler scheduler, DependencyFactory d
                 ImGui.SameLine(ImGui.GetContentRegionAvail().X - 80);
                 using (ImRaii.Disabled(configValue.IsValueDefault()))
                 {
-                    if (ImGui.Button("Reset", new Vector2(70, 0)))
+                    if (ImGui.Button("重設##Reset", new Vector2(70, 0)))
                     {
                         configValue.Value = configValue.DefaultValue;
                         C.Save();
                     }
                 }
-                ImGuiEx.Tooltip($"Reset to default value: {configValue.DefaultValue}");
+                ImGuiEx.Tooltip($"重設為預設值：{configValue.DefaultValue}");
                 ImGui.Spacing();
 
                 var valueChanged = false;

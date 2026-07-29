@@ -1,8 +1,8 @@
 {
     "Author": "daemitus, croizat",
     "Name": "Something Need Doing",
-    "Punchline": "Work work.",
-    "Description": "Now for more than crafting!",
+    "Punchline": "需要做點事情。",
+    "Description": "擴充遊戲巨集，支援原生巨集、Lua 腳本與多種自動化功能。",
     "MinimumDalamudVersion": "13.0.0.0",
     "RepoUrl": "https://github.com/Jaksuhn/SomethingNeedDoing",
     "IconUrl": "https://raw.githubusercontent.com/Jaksuhn/SomethingNeedDoing/master/res/orc2.png",

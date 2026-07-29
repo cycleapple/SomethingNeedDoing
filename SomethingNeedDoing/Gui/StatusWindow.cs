@@ -35,7 +35,7 @@ public class StatusWindow : Window
                 _minimised = !_minimised;
                 _minimiseBtn!.Icon = _minimised ? FontAwesomeIcon.WindowMaximize : FontAwesomeIcon.Minus;
             },
-            ShowTooltip = () => { using var _ = ImRaii.Tooltip(); ImGuiEx.Text(_minimised ? "Show All Macros" : "Show Running Macros Only"); },
+            ShowTooltip = () => { using var _ = ImRaii.Tooltip(); ImGuiEx.Text(_minimised ? "顯示所有巨集" : "僅顯示執行中的巨集"); },
             AvailableClickthrough = true,
         };
         TitleBarButtons.Add(_minimiseBtn);
@@ -43,13 +43,13 @@ public class StatusWindow : Window
 
     public override void Draw()
     {
-        if (ImGui.Button(_showTriggerEvents ? "Hide Trigger Events" : "Show Trigger Events"))
+        if (ImGui.Button(_showTriggerEvents ? "隱藏觸發事件##Trigger Events" : "顯示觸發事件##Trigger Events"))
             _showTriggerEvents = !_showTriggerEvents;
 
         ImGui.SameLine();
         ImGui.TextColored(ImGuiColors.DalamudGrey, "|");
         ImGui.SameLine();
-        ImGui.TextColored(ImGuiColors.DalamudGrey, "Macro Status");
+        ImGui.TextColored(ImGuiColors.DalamudGrey, "巨集狀態");
 
         ImGui.Separator();
 
@@ -94,7 +94,7 @@ public class StatusWindow : Window
         if (isCollapsed && children.Count > 0)
         {
             ImGui.SameLine();
-            ImGui.TextColored(ImGuiColors.DalamudGrey, $"({children.Count} temp)");
+            ImGui.TextColored(ImGuiColors.DalamudGrey, $"（{children.Count} 個暫存）");
         }
 
         if (!isCollapsed)
@@ -144,13 +144,13 @@ public class StatusWindow : Window
 
     private void DrawTriggerEventsSection()
     {
-        ImGuiEx.Text(ImGuiColors.DalamudOrange, "Registered Trigger Events");
+        ImGuiEx.Text(ImGuiColors.DalamudOrange, "已註冊的觸發事件");
         ImGui.Spacing();
 
         var triggerEvents = _triggerEventManager.EventHandlers;
         if (triggerEvents.Count == 0)
         {
-            ImGui.TextColored(ImGuiColors.DalamudGrey, "No trigger events registered");
+            ImGui.TextColored(ImGuiColors.DalamudGrey, "未註冊任何觸發事件");
             return;
         }
 

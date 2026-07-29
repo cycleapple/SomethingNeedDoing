@@ -11,8 +11,8 @@ public static class HelpClicksTab
         using var child = ImRaii.Child(nameof(HelpClicksTab));
         ImGuiUtils.Section("Click Commands", () =>
         {
-            ImGui.TextWrapped("Click commands can be used to interact with game UI elements. You can use these in your macros.");
-            ImGui.TextWrapped("Items in red are properties that themselves have methods (not callable directly).");
+            ImGui.TextWrapped("點擊指令可用於與遊戲介面元件互動，並可寫入巨集中。");
+            ImGui.TextWrapped("紅色項目為本身含有方法的屬性，無法直接呼叫。");
         });
 
         ImGuiUtils.Section("Available Clicks", () =>

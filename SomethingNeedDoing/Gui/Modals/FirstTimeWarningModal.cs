@@ -28,13 +28,13 @@ public static class FirstTimeWarningModal
         using var popup = ImRaii.PopupModal($"FirstTimeWarningPopup##{nameof(FirstTimeWarningModal)}", ref isOpen, ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoSavedSettings | ImGuiWindowFlags.NoTitleBar);
         if (!popup) return;
 
-        ImGui.TextWrapped($"{P.Name} has been fully rewritten to support the framework changes from API 12.");
-        ImGui.BulletText("Native macros should work much the same as before.");
-        ImGui.BulletText("Lua macros will not work at all. Scripts authors will need to write new scripts.");
-        ImGui.BulletText("There is a legacy macro importer located in the settings menu.");
+        ImGui.TextWrapped($"{P.Name} 已全面重寫，以支援 API 12 帶來的框架變更。");
+        ImGui.BulletText("原生巨集的運作方式應與過去大致相同。");
+        ImGui.BulletText("舊版 Lua 巨集無法運作，腳本作者需要重新編寫腳本。");
+        ImGui.BulletText("設定選單中提供舊版巨集匯入工具。");
 
         ImGui.Spacing();
-        ImGuiEx.TextCentered(ImGuiColors.DalamudGrey, $"This message will only be displayed once and will stop showing upon the release of API13.");
+        ImGuiEx.TextCentered(ImGuiColors.DalamudGrey, "此訊息只會顯示一次。");
 
         var group = new ImGuiEx.EzButtonGroup() { IsCentered = true };
         group.Add("Acknowledge and Close", Close);
