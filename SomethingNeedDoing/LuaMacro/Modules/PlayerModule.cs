@@ -1,4 +1,4 @@
-﻿using FFXIVClientStructs.FFXIV.Client.Game.UI;
+using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using FFXIVClientStructs.FFXIV.Client.UI.Misc;
 using NLua;
 using SomethingNeedDoing.Core.Interfaces;
@@ -23,7 +23,7 @@ public unsafe class PlayerModule : LuaModuleBase
     [LuaFunction] public EntityWrapper Entity => new(Player.Object);
     [LuaFunction] public FreeCompanyWrapper FreeCompany => new();
 
-    [LuaFunction] public JobWrapper Job => new(Player.JobId);
+    [LuaFunction] public JobWrapper Job => new(Player.ClassJob.RowId);
     [LuaFunction] public JobWrapper GetJob(uint classJobId) => new(classJobId);
     [LuaFunction][Changelog("12.21")] public GearsetWrapper Gearset => new(RaptureGearsetModule.Instance()->CurrentGearsetIndex);
     [LuaFunction][Changelog("12.21")] public GearsetWrapper GetGearset(int id) => new(id);

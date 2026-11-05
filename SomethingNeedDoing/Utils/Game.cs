@@ -1,4 +1,4 @@
-﻿using Dalamud.Game.ClientState.Objects.Types;
+using Dalamud.Game.ClientState.Objects.Types;
 using ECommons.ExcelServices;
 using ECommons.UIHelpers.AddonMasterImplementations;
 using FFXIVClientStructs.FFXIV.Client.Game;
@@ -187,7 +187,7 @@ public static unsafe class Game
             {
                 0 => throw new MacroException("Recipe not found"),
                 1 => recipes.First().RowId,
-                _ => recipes.FirstOrDefault(r => r.CraftType.RowId + 8 == Player.JobId).RowId
+                _ => recipes.FirstOrDefault(r => r.CraftType.RowId + 8 == Player.ClassJob.RowId).RowId
             };
         }
 
